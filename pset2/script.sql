@@ -112,5 +112,14 @@ WHERE
     f.cpf=tm.cpf_funcionario
 ORDER BY p.numero_projeto, f.primeiro_nome;
 
-
+-- 9)
+SELECT
+	d.nome_departamento AS departamento,
+	p.nome_projeto AS projeto,
+	SUM(tm.horas) AS horas
+FROM elmasri.trabalha_em tm
+INNER JOIN elmasri.projeto p ON (p.numero_projeto=tm.numero_projeto)
+INNER JOIN elmasri.departamento d ON (d.numero_departamento=p.numero_departamento)
+GROUP BY d.numero_departamento, p.nome_projeto
+ORDER BY d.nome_departamento;
 
