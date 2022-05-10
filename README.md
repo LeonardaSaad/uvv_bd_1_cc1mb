@@ -1,6 +1,9 @@
-# PSet 1
-## Leonarda Saad Siepierski - Prof. Abrantes Araújo Silva Filho
-##### Universidade Vila Velha - Ciência da Computação (1° Período)
+# PSet
+ - Aluna: Leonarda Saad Siepierski
+ - Turma: CC1Mb
+ - Curso: Ciência da Computação
+ - Professor: Abrantes Araújo Silva Filho
+ - Universidade: Universidade Vila Velha
 
-
-Repositório para entrega de trabalho.
+## Sobre:
+Repositório destinado a entrega de trabalho do 1° Período.
