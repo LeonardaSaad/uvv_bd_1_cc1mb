@@ -123,3 +123,24 @@ INNER JOIN elmasri.departamento d ON (d.numero_departamento=p.numero_departament
 GROUP BY d.numero_departamento, p.nome_projeto
 ORDER BY d.nome_departamento;
 
+-- 10)
+SELECT
+    d.nome_departamento,
+    f.primeiro_nome,
+    f.salario
+FROM elmasri.departamento d, elmasri.funcionario f
+WHERE d.numero_departamento=f.numero_departamento
+ORDER BY d.numero_departamento;
+
+
+-- 11)
+SELECT
+	CONCAT(f.primeiro_nome, ' ', f.nome_meio, ' ', f.ultimo_nome) AS funcionarios,
+	p.nome_projeto,
+	tm.horas*50 AS salario
+FROM elmasri.funcionario f, elmasri.projeto p, elmasri.trabalha_em
+WHERE
+ f.numero_departamento = p.numero_departamento
+AND
+f.cpf = tm.cpf_funcionario;
+
