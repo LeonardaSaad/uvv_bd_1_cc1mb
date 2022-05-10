@@ -126,11 +126,10 @@ ORDER BY d.nome_departamento;
 -- 10)
 SELECT
     d.nome_departamento,
-    f.primeiro_nome,
-    f.salario
+    CAST(AVG(salario) as decimal(10,2))
 FROM elmasri.departamento d, elmasri.funcionario f
-WHERE d.numero_departamento=f.numero_departamento
-ORDER BY d.numero_departamento;
+WHERE f.numero_departamento=d.numero_departamento
+GROUP BY d.nome_departamento;
 
 
 -- 11)
