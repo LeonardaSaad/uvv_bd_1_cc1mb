@@ -81,17 +81,18 @@ WHERE
 
 
 -- 7)Relatório que mostre, para cada funcionário que NÃO TEM dependente, seu nome completo, departamento e salário.
-SELECT DISTINCT
-	CONCAT(f.primeiro_nome, ' ', f.nome_meio, ' ', f.ultimo_nome) AS funcionarios,
-	f.numero_departamento AS numero_d,
-	d.nome_departamento AS departamento,
+SELECT
+	CONCAT(f.primeiro_nome, ' ', f.nome_meio, ' ', f.ultimo_nome) AS funcionario,
+	f.numero_departamento AS departamento,
 	f.salario AS salario
-FROM elmasri.funcionario f, elmasri.dependente dp, elmasri.departamento d
-WHERE EXISTS (SELECT *
-      FROM elmasri.dependente dp, elmasri.funcionario f
-      WHERE f.cpf!=dp.cpf_funcionario)
-	AND
-	f.numero_departamento=d.numero_departamento;
+FROM elmasri.funcionario f
+EXCEPT
+SELECT
+	CONCAT(f.primeiro_nome, ' ', f.nome_meio, ' ', f.ultimo_nome) AS funcionario,
+	f.numero_departamento AS departamento,
+	f.salario AS salario
+FROM elmasri.dependente dp
+INNER JOIN elmasri.funcionario f ON (dp.cpf_funcionario=f.cpf);
 
 
 -- 8) Relatório que mostre, para cada departamento os projetos e o nome completo dos funcionários alocados. Além de incluir o número de horas trabalhadas por cada um.
