@@ -142,3 +142,18 @@ INNER JOIN elmasri.projeto p ON p.numero_projeto=tm.numero_projeto
 INNER JOIN elmasri.funcionario f ON f.cpf=tm.cpf_funcionario
 GROUP BY funcionario, p.nome_projeto, tm.horas
 ORDER BY funcionario;
+
+
+-- 12) Relatório que liste o nome do departamento, nome do projeto e o nome dos funcionários que, mesmo estando alocados a algum projeto, não registraram nenhuma hora trabalhada.
+
+
+
+-- 13) A empresa irá presentear todos os funcionários e todos os dependentes. Crie um relatório que liste o nome completo das pessoas a serem presenteadas (funcionários e dependeetes), sexo e a idade. O relatório deve estar ordenado pela idade, de forma descecente.
+
+
+-- 14) Prepare um relatório que exiba quantos funcionários cada departamento tem.
+
+
+-- 15) Relatório que exiba o nome completo dos funcionarios que estão em amsi de um projeto, departamento e o nome dos projetos em que está alocado.
+
+
