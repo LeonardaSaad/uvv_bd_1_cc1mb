@@ -112,7 +112,7 @@ WHERE
     f.cpf=tm.cpf_funcionario
 ORDER BY p.numero_projeto, f.primeiro_nome;
 
--- 9)
+-- 9) Relatório que mostre a soma total das horas de cada projeto em cada departamento. Obs.: o relatório deve exibir o nome do departamento, o nome do projeto e a soma total das horas.
 SELECT
 	d.nome_departamento AS departamento,
 	p.nome_projeto AS projeto,
@@ -123,7 +123,7 @@ INNER JOIN elmasri.departamento d ON (d.numero_departamento=p.numero_departament
 GROUP BY d.numero_departamento, p.nome_projeto
 ORDER BY d.nome_departamento;
 
--- 10)
+-- 10)Relatório que mostre a média salarial dos funcionários de cada departamento.
 SELECT
     d.nome_departamento,
     CAST(AVG(salario) as decimal(10,2))
@@ -132,7 +132,7 @@ WHERE f.numero_departamento=d.numero_departamento
 GROUP BY d.nome_departamento;
 
 
--- 11)
+-- 11) Considerando que o valor pago por hora trabalhada em um projeto é de 50 reais, prepare um relatório que mostre o nome completo do funcionário, o nome do projeto e o valor total que o funcionário receberá referente às horas trabalhadas naquele projeto.
 SELECT
 	CONCAT(f.primeiro_nome, ' ', f.nome_meio, ' ', f.ultimo_nome) AS funcionario,
 	p.nome_projeto AS projeto,
