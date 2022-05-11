@@ -134,12 +134,11 @@ GROUP BY d.nome_departamento;
 
 -- 11)
 SELECT
-	CONCAT(f.primeiro_nome, ' ', f.nome_meio, ' ', f.ultimo_nome) AS funcionarios,
-	p.nome_projeto,
-	tm.horas*50 AS salario
-FROM elmasri.funcionario f, elmasri.projeto p, elmasri.trabalha_em
-WHERE
- f.numero_departamento = p.numero_departamento
-AND
-f.cpf = tm.cpf_funcionario;
-
+	CONCAT(f.primeiro_nome, ' ', f.nome_meio, ' ', f.ultimo_nome) AS funcionario,
+	p.nome_projeto AS projeto,
+	tm.horas*50 AS horas
+FROM elmasri.trabalha_em tm
+INNER JOIN elmasri.projeto p ON p.numero_projeto=tm.numero_projeto
+INNER JOIN elmasri.funcionario f ON f.cpf=tm.cpf_funcionario
+GROUP BY funcionario, p.nome_projeto, tm.horas
+ORDER BY funcionario;
