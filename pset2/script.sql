@@ -28,7 +28,7 @@ FROM elmasri.departamento d, elmasri.funcionario f;
 
 
 -- 4) Relatório com o nome completo, idade, salario atual e salário com reajuste:
-   -- Critério do reajuste: se o salário atual for inferior a 35 mil, recebe um reajuste de 20% e se o salário atual for igual ou	superior a 35.000, recebe reajuste de 15%.
+   -- Critério do reajuste: se o salário atual for inferior a 35 mil, recebe um reajuste de 20% e se o salário atual for igual ou superior a 35.000, recebe reajuste de 15%.
 SELECT 
 CONCAT(f.primeiro_nome, ' ', f.nome_meio, ' ', f.ultimo_nome) AS nome_completo,
 DATE_PART('year', age(data_nascimento))::int AS idade,
@@ -180,6 +180,20 @@ GROUP BY d.numero_departamento
 ORDER BY d.numero_departamento;
 
 
--- 15) Relatório que exiba o nome completo dos funcionarios que estão em amsi de um projeto, departamento e o nome dos projetos em que está alocado.
-
-
+-- 15) Relatório que exiba o nome completo dos funcionarios que estão em mais de um projeto, departamento e o nome dos projetos em que está alocado.
+SELECT
+	CONCAT(f.primeiro_nome, ' ', f.nome_meio, ' ', f.ultimo_nome) AS funcionarios,
+	d.numero_departamento AS departamento,
+	p.nome_projeto AS projeto
+FROM elmasri.departamento d
+INNER JOIN elmasri.funcionario f ON (f.numero_departamento=d.numero_departamento)
+INNER JOIN elmasri.projeto p ON (p.numero_departamento=d.numero_departamento)
+EXCEPT
+SELECT
+	CONCAT(f.primeiro_nome, ' ', f.nome_meio, ' ', f.ultimo_nome) AS funcionarios,
+	d.numero_departamento AS departamento,
+	p.nome_projeto AS projeto
+FROM elmasri.departamento d
+INNER JOIN elmasri.funcionario f ON (f.numero_departamento='1')
+INNER JOIN elmasri.projeto p ON (p.numero_departamento='1')
+ORDER BY 1,3;
