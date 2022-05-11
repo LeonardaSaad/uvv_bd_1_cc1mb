@@ -148,6 +148,26 @@ ORDER BY funcionario;
 
 
 -- 13) A empresa irá presentear todos os funcionários e todos os dependentes. Crie um relatório que liste o nome completo das pessoas a serem presenteadas (funcionários e dependeetes), sexo e a idade. O relatório deve estar ordenado pela idade, de forma descecente.
+SELECT 
+	CONCAT(f.primeiro_nome, ' ', f.nome_meio, ' ', f.ultimo_nome) AS nome,
+	CASE sexo
+	WHEN 'M' THEN 'Homens'
+	WHEN 'F' THEN 'Mulheres'
+	ELSE ''
+	END sexo,
+	date_part('year', age(data_nascimento))::int AS idade
+FROM elmasri.funcionario f
+UNION
+SELECT
+	dp.nome_dependente AS nome,
+	CASE sexo
+	WHEN 'M' THEN 'Homens'
+	WHEN 'F' THEN 'Mulheres'
+	ELSE ''
+	END sexo,
+	date_part('year', age(data_nascimento))::int AS idade
+FROM elmasri.dependente dp
+ORDER BY idade DESC;
 
 
 -- 14) Prepare um relatório que exiba quantos funcionários cada departamento tem.
