@@ -145,7 +145,27 @@ ORDER BY funcionario;
 
 
 -- 12) Relatório que liste o nome do departamento, nome do projeto e o nome dos funcionários que, mesmo estando alocados a algum projeto, não registraram nenhuma hora trabalhada.
+SELECT
+	CONCAT(f.primeiro_nome, ' ', f.nome_meio, ' ', f.ultimo_nome) AS funcionarios
+FROM elmasri.funcionario f
+EXCEPT
+SELECT
+	CONCAT(f.primeiro_nome, ' ', f.nome_meio, ' ', f.ultimo_nome) AS funcionarios
+FROM elmasri.funcionario f
+INNER JOIN elmasri.trabalha_em tm ON (tm.cpf_funcionario=f.cpf);
 
+SELECT
+	d.nome_departamento AS departamento,
+	p.nome_projeto AS projeto,
+	CONCAT(f.primeiro_nome, ' ', f.nome_meio, ' ', f.ultimo_nome) AS funcionarios
+FROM elmasri.departamento d, elmasri.projeto p, elmasri.funcionario f
+EXCEPT
+SELECT
+	d.nome_departamento AS departamento,
+	p.nome_projeto AS projeto,
+	CONCAT(f.primeiro_nome, ' ', f.nome_meio, ' ', f.ultimo_nome) AS funcionarios
+FROM elmasri.departamento d, elmasri.projeto p, elmasri.funcionario f
+INNER JOIN elmasri.trabalha_em tm ON (tm.cpf_funcionario=f.cpf)
 
 
 -- 13) A empresa irá presentear todos os funcionários e todos os dependentes. Crie um relatório que liste o nome completo das pessoas a serem presenteadas (funcionários e dependeetes), sexo e a idade. O relatório deve estar ordenado pela idade, de forma descecente.
