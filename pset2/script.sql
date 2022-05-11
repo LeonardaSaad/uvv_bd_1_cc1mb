@@ -145,6 +145,18 @@ ORDER BY funcionario;
 
 
 -- 12) Relatório que liste o nome do departamento, nome do projeto e o nome dos funcionários que, mesmo estando alocados a algum projeto, não registraram nenhuma hora trabalhada.
+SELECT
+	d.nome_departamento AS departamento,
+	p.nome_projeto AS porjeto,
+	CONCAT(f.primeiro_nome, ' ', f.nome_meio, ' ', f.ultimo_nome) AS funcionario
+FROM elmasri.funcionario f, elmasri.trabalha_em tm, elmasri.projeto p, elmasri.departamento d
+WHERE 
+	p.numero_departamento=d.numero_departamento
+	AND
+	tm.cpf_funcionario=f.cpf 
+	AND 
+	tm.horas is null
+ORDER BY d.nome_departamento, p.nome_projeto;
 
 
 -- 13) A empresa irá presentear todos os funcionários e todos os dependentes. Crie um relatório que liste o nome completo das pessoas a serem presenteadas (funcionários e dependeetes), sexo e a idade. O relatório deve estar ordenado pela idade, de forma descecente.
